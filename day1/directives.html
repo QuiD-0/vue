@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <dvi id="app">
+        <h2 v-pre>{{그대로 표시}}</h2>
+        <h2 v-pre>{{msg}}</h2>
+        <div v-html="msg"></div>
+        <div v-text="msg"></div>
+        <hr>
+        <a href="#" v-if="flag1">gogo</a>
+        <!-- 주석처리되어 만들지 않음 -> 값이 변경되면 다시 만들어야함 -->
+        <a href="#" v-if="flag2">stop</a>  
+        <!-- 렌더링 후 숨김 -->
+        <p v-show="flag2">v-show false</p>
+        <p v-show="flag1">v-show true</p>
+    </dvi>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    flag1: true,
+                    flag2: false,
+                    system: ["android", "windows", "ios"],
+                    uid: "a123",
+                    msg: "<h1>hello, vue</h1>",
+                    src: "./img/blueBlouse.jpg"
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
