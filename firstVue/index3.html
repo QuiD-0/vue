@@ -12,6 +12,7 @@
 <body>
     <div id="app">
         <h2>클릭 카운트 : {{count}}</h2>
+        <h2 v-once>클릭 카운트 : {{count}}</h2>
         <button @click="count++">카운트 증가</button>
     </div>
     <script>
@@ -21,14 +22,6 @@
                 return {
                     count: 0,
                 }
-            },
-            beforeMount() { //연결 안됨
-                console.log(this.count);
-                console.log(this.$el);
-            },
-            mounted() { //연결 됨
-                console.log(this.count);
-                console.log(this.$el);
             },
         });
     </script>

@@ -11,24 +11,16 @@
 
 <body>
     <div id="app">
-        <h2>클릭 카운트 : {{count}}</h2>
-        <button @click="count++">카운트 증가</button>
+        <div>{{msg}}</div>
+        <div v-html="msg"></div>
     </div>
     <script>
         new Vue({
             el: "#app",
             data() {
                 return {
-                    count: 0,
+                    msg: "<span style='color:red;'>안녕</span>",
                 }
-            },
-            beforeMount() { //연결 안됨
-                console.log(this.count);
-                console.log(this.$el);
-            },
-            mounted() { //연결 됨
-                console.log(this.count);
-                console.log(this.$el);
             },
         });
     </script>
