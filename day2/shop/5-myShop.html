@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>dada's</title>
+
+	<style type="text/css">
+		@import url("./shop.css");
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+	<div class="nav-bar"></div>
+	<div id="app">
+		<div class="product">
+			<div class="product-image">
+				<!-- 1. 상품 이미지 넣기-->
+				<img :src="image" alt="">
+			</div>
+
+			<div class="product-info">
+				<h1>{{product}}</h1> <!--  2. 상품명 -->
+
+				<!-- 3. inStock 값에 따라 화면에 'In Stock' OR 'Out of Stock' 표시-->
+				<p v-if="inStock">In Stock</p>
+				<p v-else>Out of Stock</p>
+
+
+				<!-- 4. onSale 값에 따라 화면에 'On Sale!' 표시-->
+				<span v-show="onSale">On Sale!</span>
+
+				<!--  5. 상품설명 -->
+				<p>{{description}}</p>
+
+				<ul>
+					<!--  6. 상품 상세 설명 -->
+					<li v-for="(item, index) in details" :key="index">{{item}}</li>
+				</ul>
+
+				<!--  7. color-box -->
+				<div v-for="option in options" :key="option.optionId" class="color-box">
+					<div :class="option.optionColor" @mouseover="updateProduct(option.optionImage)"></div>
+				</div>
+				<hr>
+				<!--  8. button event 처리  -->
+				<button @click="addToCart">Add </button>
+				<button @click="removeFromCart">Remove </button>
+
+
+				<div class="cart">
+					<!-- 9.카트안의 상품 갯수 표시-->
+					<p>cart({{cart}})</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script>
+		//Create a new button and method to decrement the value of `cart`.
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				product: 'Dadas Blouse',
+				image: '../../img/blueBlouse.jpg',
+				inStock: true,
+				max: 10,
+				onSale: true,
+				description: '올봄 잇아이템',
+				cart: 0,
+				details: ['80% cotton', '20% polyester', 'Gender-neutral'],
+				options: [{
+						optionId: 2234,
+						optionColor: 'violet',
+						optionImage: '../../img/violetBlouse.jpg'
+					},
+					{
+						optionId: 2235,
+						optionColor: 'blue',
+						optionImage: '../../img/blueBlouse.jpg'
+					}
+				],
+			},
+			methods: {
+				addToCart() {
+					this.cart++;
+					this.checkProduct();
+				},
+
+				updateProduct(optionImage) {
+					this.image = optionImage
+				},
+
+				removeFromCart() {
+					this.cart--;
+					this.checkProduct();
+				},
+				checkProduct() {
+					if (this.cart >= this.max) {
+						this.cart = 10;
+					} else if (this.cart <= 0) {
+						this.cart = 0
+					}
+					if(this.cart>=this.max){
+						this.inStock=false;
+					}else{
+						this.inStock=true;
+					}
+				},
+			}
+		})
+	</script>
+</body>
+
+</html>
