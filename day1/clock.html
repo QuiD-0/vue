@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">{{localTime}}</div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                localTime: ""
+            },
+            methods: {
+                showLocaleTime: function () {
+                    var time = this;
+                    setInterval(function () {
+                        time.localTime = new Date().toLocaleTimeString();
+                    }, 1000);
+                },
+            },
+            created() {
+                this.showLocaleTime()
+            }
+        });
+    </script>
+</body>
+
+</html>

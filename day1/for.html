@@ -7,20 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
 </head>
 
 <body>
     <div id="app">
         {{msg}}
+        <input type="number" v-model="no">
+        <div v-for="(i) in 5">{{i}} 번</div>
         <ul>
             <li v-for="(item, index) in books" :key="index">{{item}}</li>
         </ul>
         <ul>
-            <li v-for="(item, value, index) in story" :key="index">{{index+1}} {{value}} : {{item}}</li>
+            <li v-for="(item, value, index) in story" :key="index">{{index+1}}번 {{value}} : {{item}}</li>
         </ul>
         <ul>
-            <li v-for="(story,index) in stories">{{index+1}} {{story.writer}} : {{story.name}}</li>
+            <!-- 좋지않은 예제! - if와 for문을 함께 사용하면 안된다. -->
+            <li v-for="story in stories" v-if="story.num==no">{{story.writer}} : {{story.name}}</li>
         </ul>
     </div>
     <script>
@@ -30,7 +32,7 @@
                 return {
                     msg: "안녕",
                     books: ["햄릿", "콩쥐 팥쥐", "누가 내치즈를 옮겼을까"],
-
+                    no: '',
                     story: {
                         author: "세익스피어",
                         title: "tempest",
@@ -38,14 +40,17 @@
                     },
 
                     stories: [{
+                            num: 1,
                             writer: "james lee",
                             name: "good job",
                         },
                         {
+                            num: 2,
                             writer: "billy jones",
                             name: "how are you, today?",
                         },
                         {
+                            num: 3,
                             writer: "david min",
                             name: "farewell to arms",
                         },
