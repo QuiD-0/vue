@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="EUC-KR" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+	<title>Insert title here</title>
+	<script src="https://unpkg.com/vue@2"></script>
+</head>
+
+<body>
+	<div class="container">
+		<h1>calculator</h1>
+		<form class="form-inline">
+			<input v-model.number="a" class="form-control" />
+			<select v-model="operator" class="form-control">
+				<option>+</option>
+				<option>-</option>
+				<option>*</option>
+				<option>/</option>
+			</select>
+			<input v-model.number="b" class="form-control" />
+			<button class="btn btn-primary" type="button" @click="calc()">
+				calculate
+			</button>
+		</form>
+		<h2>result: {{ result }}</h2>
+	</div>
+	<script>
+		new Vue({
+			el: ".container",
+			data() {
+				return {
+					result: 0,
+					operator: '+',
+					a: 0,
+					b: 0,
+				}
+			},
+			methods: {
+				calc() {
+					switch (this.operator) {
+						case "+":
+							this.result = this.a + this.b;
+							break;
+						case "-":
+							this.result = this.a - this.b;
+							break;
+						case "*":
+							this.result = this.a * this.b;
+							break;
+						case "/":
+							this.result = this.a / this.b;
+							break;
+					}
+
+				}
+			},
+		})
+	</script>
+</body>
+
+</html>

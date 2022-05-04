@@ -11,13 +11,19 @@
 
 <body>
     <div id="app">
-        
+        <button @click="upCount">{{cnt}}</button>
+        <button v-once @click="upCount">{{cnt}}</button>
     </div>
     <script>
         new Vue({
             el: "#app",
             data: {
-                
+                cnt:0,
+            },
+            methods: {
+                upCount(){
+                    this.cnt++;
+                }
             },
         })
 

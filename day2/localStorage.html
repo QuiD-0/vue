@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        번호 : <input type="text" v-model="num"> <br>
+        이름 : <input type="text" v-model="name"> <br>
+        주소 : <input type="text" v-model="addr"> <br>
+        <button @click="add">추가</button>
+        <button @click="del">삭제</button>
+        <button @click="delAll">전체삭제</button>
+        <button @click="selectAll">전체조회</button>
+        <button @click="search">검색</button>
+        <button @click="clear">화면 초기화</button>
+
+        <div v-html="msg"></div>
+    </div>
+    <script>
+        // localStorage.setItem("code", "blue");
+        // localStorage.setItem("name", "ark");
+        // localStorage.clear();
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    num: '',
+                    name: '',
+                    addr: '',
+                    msg: '',
+                }
+            },
+            methods: {
+                add: function () {
+                    let num = this.num;
+                    let name = this.name;
+                    let addr = this.addr;
+                    var json = {
+                        "num": num,
+                        "name": name,
+                        "address": addr
+                    };
+                    localStorage.setItem(num, JSON.stringify(json));
+                    this.init();
+                },
+                del: function () {
+                    localStorage.removeItem(this.num);
+                    this.init();
+                },
+                delAll: function () {
+                    localStorage.clear();
+                    this.init();
+                },
+                selectAll: function () {
+                    this.msg='';
+                    for (key in localStorage) {
+                        var obj = JSON.parse(localStorage.getItem(key));
+                        this.msg += "번호: " + obj.num + " 이름: " + obj.name + " 주소: "+ obj.address +"<br>";
+                    }
+                    this.init();
+                },
+                search:function(){
+                    this.msg='';
+                    if(this.num in localStorage){
+                        var obj = JSON.parse(localStorage.getItem(this.num));
+                        this.msg += "번호: " + obj.num + " 이름: " + obj.name + " 주소: "+ obj.address +"<br>";
+                    }else{
+                        this.msg +=  "검색결과 없음<br>";
+                    }
+                },
+                init:function(){
+                    this.num="";
+                    this.name="";
+                    this.addr="";
+                },
+                clear:function(){
+                    this.init();
+                    this.msg='';
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
