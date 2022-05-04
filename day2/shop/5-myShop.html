@@ -40,8 +40,8 @@
 				</ul>
 
 				<!--  7. color-box -->
-				<div v-for="option in options" :key="option.optionId" class="color-box">
-					<div :class="option.optionColor" @mouseover="updateProduct(option.optionImage)"></div>
+				<div v-for="option in options" :key="option.optionId" class="color-box"
+					:style="{backgroundColor:option.optionColor}" @mouseover="updateProduct(option.optionImage)">
 				</div>
 				<hr>
 				<!--  8. button event 처리  -->
@@ -103,10 +103,10 @@
 					} else if (this.cart <= 0) {
 						this.cart = 0
 					}
-					if(this.cart>=this.max){
-						this.inStock=false;
-					}else{
-						this.inStock=true;
+					if (this.cart >= this.max) {
+						this.inStock = false;
+					} else {
+						this.inStock = true;
 					}
 				},
 			}
