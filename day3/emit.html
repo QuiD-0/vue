@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <child :code="msg" @help="parentMethod(999)"></child>
+            <child :code="msg" @help="parentMethod(msg)"></child>
+        </div>
+    </div>
+    <script>
+        Vue.component('child', {
+            template: "<button @click='send'>emit {{code}}</button>",
+            props:["code"],
+            methods:{
+                send(){
+                    this.$emit("help");
+                },
+            }
+            
+        })
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    msg: 'gogo ~',
+                }
+            },
+            methods: {
+                parentMethod(val){
+                    alert('이벤트 받음 : '+val);
+
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -11,24 +11,21 @@
 
 <body>
     <div id="app">
-        <my-global></my-global>
-        <mylocal></mylocal>
+        <div>
+            <child code="123" val="asd" :msg="msg"></child>
+        </div>
     </div>
     <script>
-        Vue.component("my-global", {
-            template: "<div>my global component {{num}}</div>",
-            data() {
-                return {
-                    num: 0,
-                }
-            },
-        });
+        Vue.component('child', {
+            template: "<h1>하위 컴포넌트 {{code}} {{val}} {{msg}}<h1>",
+            props: ['code', 'val', 'msg'],
+        })
 
         new Vue({
             el: "#app",
             data() {
                 return {
-                    num: 99,
+                    msg: '상위 컴포넌트의 메세지',
                 }
             },
             components: {
