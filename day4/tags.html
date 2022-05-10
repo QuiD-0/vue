@@ -23,7 +23,15 @@
             <input type="checkbox" value="대전" id="daejeon" v-model="checked">
             <label for="daejeon">대전</label>
         </div>
-        <div>{{checked}}</div>
+        <div v-if="checked.length ==0">선택해 주세요</div>
+        <div v-else>{{ checked.join(",") }}</div>
+        <select v-model="selected">
+            <option value="a">1</option>
+            <option value="b">2</option>
+            <option value="c">3</option>
+        </select>
+        <div v-if="selected.length ==0">선택해 주세요</div>
+        <div v-else>{{selected}}</div>
     </div>
     <script>
         new Vue({
@@ -31,8 +39,9 @@
             data() {
                 return {
                     checked: [],
+                    selected: [],
                 }
-            }
+            },
         })
     </script>
 </body>
