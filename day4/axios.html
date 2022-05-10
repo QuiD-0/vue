@@ -31,10 +31,11 @@
                 };
             },
             methods: {
-                getData() {
-                    axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
+                async getData() {
+                    await axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
                         this.users = res.data;
-                    })
+                    });
+                    console.log("비동기 완료")
                 }
             },
         })
