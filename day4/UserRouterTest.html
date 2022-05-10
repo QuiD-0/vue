@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>어플리케이션에서 라우팅</title>
+	<script src="https://unpkg.com/vue@2"></script>
+	<script src="https://unpkg.com/vue-router@3"></script>
+</head>
+
+<body>
+	<div id="app">
+		<nav>
+			<router-link to="/top">최상위 페이지</router-link>
+			<router-link to="/users">사용자 목록 페이지</router-link>
+		</nav>
+		<router-view></router-view>
+	</div>
+
+	<!-- 사용자 목록 페이지 템플릿 -->
+	<template id="user-list">
+		<div v-for="(user, index) in users" :key="index">{{user.id}} {{user.name}} {{user.description}}</div>
+	</template>
+
+	<script>
+		var userData = [{
+				id: 1,
+				name: "Tommy Lee",
+				description: "한국에서 일하는 프론트엔드 엔지니어입니다.",
+			},
+			{
+				id: 2,
+				name: "Jane Kim",
+				description: "아웃도어, 풋살이 취미인 프로그래머입니다.",
+			},
+			{
+				id: 3,
+				name: "Harry Porter",
+				description: "마법이 취미인 데이터 분석가입니다.",
+			},
+		];
+
+		//컴포넌트- 사용자 목록
+		var UserList = {
+			template: "#user-list",
+
+			data() {
+				return {
+					users: [],
+				};
+			},
+
+			created: function () {
+				this.fetchData();
+			},
+
+			methods: {
+				fetchData() {
+					this.users = userData;
+				},
+			},
+		};
+
+		// 컴포넌트는 생성자로 만든 것이든 옵션으로 만든 것이든 상관없음
+		// 각 라우트에 컴포넌트를 매핑
+		var router = new VueRouter({
+			routes: [{
+					// 정의되지 않은 경로 처리. 최상위 페이지로 리다이렉트
+					path: "*",
+					redirect: "/top",
+				},
+				{
+					path: "/users",
+					component: {
+						template: UserList,
+					}
+				},
+				{
+					path: "/top",
+					component: {
+						template: "<div>최상의 페이지 입니다.</div>"
+					}
+				},
+			],
+		});
+
+		// 라우터 인스턴스를 루트 Vue 인스턴스에 전달
+		var app = new Vue({
+			router: router,
+		}).$mount("#app");
+	</script>
+</body>
+
+</html>
