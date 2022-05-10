@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <script src="https://unpkg.com/vue-router@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+</head>
+
+<body>
+    <div id="app">
+        <h1>router test</h1>
+        <router-link to="/main">Main Component로 이동</router-link>
+        <router-link to="/sub">Sub Component로 이동</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script>
+        var Main = {
+            template: '<div>Main 화면</div>'
+        };
+        var Sub = {
+            template: '<div>Sub 화면</div>'
+        };
+        const router = new VueRouter({
+            routes: [{
+                    path: '/main',
+                    component: Main
+                },
+                {
+                    path: '/sub',
+                    component: Sub
+                },
+            ],
+            mode: "history",
+        });
+
+        new Vue({
+            el: "#app",
+            router: router,
+        });
+    </script>
+</body>
+
+</html>
