@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@2"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    msg: '',
+                }
+            },
+            created() {
+                axios.get("https://jsonplaceholder.typicode.com/todos/1").then(
+                    (res) => {
+                        console.log("1");
+                        this.msg = res.data;
+                    }
+                );
+                console.log("2");
+                this.test();
+                console.log("5");
+            },
+            methods: {
+                async test() {
+                    await axios.get("https://jsonplaceholder.typicode.com/todos/1").then(
+                        (res) => {
+                            console.log("3");
+                            this.msg = res.data;
+                        }
+                    );
+                    console.log("4");
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

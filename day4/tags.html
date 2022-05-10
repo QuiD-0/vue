@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://unpkg.com/vue@2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <input type="checkbox" value="부울경" id="buk" v-model="checked">
+            <label for="buk">부울경</label>
+            <input type="checkbox" value="서울" id="seoul" v-model="checked">
+            <label for="seoul">서울</label>
+            <input type="checkbox" value="구미" id="gumi" v-model="checked">
+            <label for="gumi">구미</label>
+            <input type="checkbox" value="광주" id="gwangju" v-model="checked">
+            <label for="gwangju">광주</label>
+            <input type="checkbox" value="대전" id="daejeon" v-model="checked">
+            <label for="daejeon">대전</label>
+        </div>
+        <div>{{checked}}</div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    checked: [],
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
