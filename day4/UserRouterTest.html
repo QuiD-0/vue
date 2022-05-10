@@ -19,7 +19,10 @@
 
 	<!-- 사용자 목록 페이지 템플릿 -->
 	<template id="user-list">
-		<div v-for="(user, index) in users" :key="index">{{user.id}} {{user.name}} {{user.description}}</div>
+		<div>
+			<div v-for="(user,index) in users" :key="index">id: {{user.id}} <br> name: {{user.name}} <br> description:
+				{{user.description}} <br> </div>
+		</div>
 	</template>
 
 	<script>
@@ -71,9 +74,7 @@
 				},
 				{
 					path: "/users",
-					component: {
-						template: UserList,
-					}
+					component: UserList,
 				},
 				{
 					path: "/top",
@@ -85,9 +86,10 @@
 		});
 
 		// 라우터 인스턴스를 루트 Vue 인스턴스에 전달
-		var app = new Vue({
+		new Vue({
+			el: "#app",
 			router: router,
-		}).$mount("#app");
+		});
 	</script>
 </body>
 
