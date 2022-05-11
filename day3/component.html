@@ -11,15 +11,21 @@
 
 <body>
     <div id="app">
-        <my-global></my-global>
+        <my-global name="americano"></my-global>
+        <my-global name="latte"></my-global>
         <mylocal></mylocal>
     </div>
     <script>
         Vue.component("my-global", {
-            template: "<div>my global component {{num}}</div>",
+            template: "<div>my global component {{num}} <button @click='up'>{{name}}-up</button></div>",
+            props:['name'],
             data() {
                 return {
                     num: 0,
+                }
+            },methods: {
+                up(){
+                    this.num++;
                 }
             },
         });
