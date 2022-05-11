@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <todo-form></todo-form>
+        <todo></todo>
+    </div>
+    <script>
+        Vue.component("todo", {
+            template: `<div>
+                <h1>todo 목록</h1>
+                <table>
+            <tr v-for="(todo,index) in todos" :key="index">
+                <td>{{todo.num}}</td>
+                <td>{{todo.id}}</td>
+                <td>{{todo.content}}</td>
+                <td>{{todo.sdate}}</td>
+                <td>{{todo.edate}}</td>
+                <td v-if="todo.done=='Y'">{{todo.done}}</td>
+                <td v-else><button @click="done(todo.num)">완료하기</button></td>
+            </tr>
+        </table>
+                </div>`,
+            data() {
+                return {
+                    todos: [],
+                };
+            },
+            methods: {
+                getData() {
+                    axios.get('http://localhost:8000/todo').then((res) => {
+                        this.todos = res.data;
+                    });
+                },
+                done(val) {
+                    console.log(val);
+                    axios.put('http://localhost:8000/todo/' + val).then((res) => {
+                        this.$router.go();
+                    });
+                }
+            },
+            created() {
+                this.getData();
+            },
+        })
+
+        Vue.component("todo-form", {
+            template: `
+            <div>
+                <div class="form-group text-left">
+        <label for="title">Todo:</label> <input type="text" class="form-control" name="content" v-model="content">
+    </div>
+
+    <div class="form-group text-left">
+        <label for="pw">id:</label> <input type="pass" class="form-control" name="id" v-model="id">
+    </div>
+    <div class="form-group text-left">
+        <label for="name">종료일</label> <input type="date" class="form-control" name="edate" v-model="edate">
+    </div>
+
+    <button @click='insert' class="btn btn-primary">Submit</button>
+                </div>
+            `,
+            data() {
+                return {
+                    content: '',
+                    id: '',
+                    edate: '',
+
+                }
+            },
+            methods: {
+                insert() {
+                    axios.post("http://localhost:8000/todo", {
+                        id: this.id,
+                        content: this.content,
+                        edate: this.edate,
+                    }).then(() => {
+                        this.$router.go();
+                    })
+                }
+            }
+        })
+        new Vue({
+            el: "#app",
+
+        })
+    </script>
+</body>
+
+</html>
