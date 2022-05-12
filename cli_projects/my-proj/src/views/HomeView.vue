@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <MyWorld></MyWorld>
-    <MyWorld></MyWorld>
+    <MyWorld code="props"></MyWorld>
+    <MyWorld :code="msg"></MyWorld>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -17,6 +17,11 @@ export default {
   components: {
     HelloWorld,
     MyWorld,
-  }
+  },
+  data() {
+    return {
+      msg:'hello',
+    }
+  },
 }
 </script>
