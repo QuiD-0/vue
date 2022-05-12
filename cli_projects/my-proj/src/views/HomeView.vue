@@ -3,20 +3,23 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <MyWorld code="props"></MyWorld>
     <MyWorld :code="msg"></MyWorld>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <OtherWorld num="1"></OtherWorld>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 import MyWorld from '@/components/MyWorld.vue'
+import OtherWorld from '@/components/OtherWorld.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld,
+    // HelloWorld,
     MyWorld,
+    OtherWorld
   },
   data() {
     return {
