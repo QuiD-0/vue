@@ -1,35 +1,42 @@
 <template>
   <div>
-    <table>
-      <tr v-for="(todo, index) in todos" :key="index" @click="showTodo(todo.num)">
-        <td>{{ todo.num }}</td>
-        <td>{{ todo.content }}</td>
-      </tr>
-    </table>
+    <b-table
+      striped
+      hover
+      :items="todos"
+      :fields="fields"
+      @row-clicked="onRowClicked"
+    ></b-table>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 export default {
+  name: 'TodoList',
   created() {
-    this.selectAll();
+    this.selectAll()
   },
   methods: {
     selectAll() {
-      axios.get("http://localhost:8000/todo").then((res) => {
-        this.todo = res.data;
-      });
+      axios.get('http://localhost:8000/todo').then((res) => {
+        this.todo = res.data
+      })
     },
-    showTodo(num){
-      this.$router.push("/detail/"+num);
-    }
+    showTodo(num) {
+      this.$router.push('/detail/' + num)
+    },
+    onRowClicked(item) {
+      console.log(item.num)
+      this.$router.push('/detail/' + item.num)
+    },
   },
   data() {
     return {
-      todos: []
-    };
-  }
-};
+      todos: [],
+    }
+  },
+}
 </script>
 
 <style></style>

@@ -15,3 +15,10 @@ h1 {
   font-weight: 900;
 }
 </style>
+
+<script>
+/* eslint-disable */
+export default {
+  name: 'TodoHeader',
+}
+</script>

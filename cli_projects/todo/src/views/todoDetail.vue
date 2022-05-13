@@ -1,15 +1,12 @@
 <template>
   <div>
-      <h1>Todo Detail</h1>
+    <h1>Todo Detail</h1>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+/* eslint-disable */
+export default {}
 </script>
 
-<style>
-
-</style>
+<style></style>

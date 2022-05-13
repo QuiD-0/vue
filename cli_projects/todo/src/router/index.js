@@ -1,14 +1,13 @@
 /* eslint-disable */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TodoList from '@/views/TodoList.vue'
-import TodoDetail from '@/views/TodoDetail.vue'
-import TodoInput from '@/views/TodoInput.vue'
+import TodoList from '@/views/todoList'
+import TodoDetail from '@/views/todoDetail'
+import TodoInput from '@/views/todoInput'
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  name: router,
   mode: 'history',
   routes: [
     {

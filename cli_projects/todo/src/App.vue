@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <todoHeader></todoHeader>
+    <TodoHeader></TodoHeader>
   </div>
 </template>
 
