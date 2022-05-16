@@ -23,8 +23,9 @@ export default {
     this.selectAll()
   },
   methods: {
+    // ...mapGetters(['ALLTODO']),
     selectAll() {
-      this.$store.dispatch('allTodo', 1)
+      this.$store.dispatch('allTodo')
     },
     findOne(num) {
       this.$router.push('detail/' + num)
