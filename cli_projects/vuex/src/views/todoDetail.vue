@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+// import { mapActions } from 'vuex'
 /* eslint-disable */
 import axios from '../store/axios-common'
 export default {

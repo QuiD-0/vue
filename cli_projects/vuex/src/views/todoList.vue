@@ -11,14 +11,20 @@
         <td>{{ todo.content }}</td>
       </tr>
     </table>
+    <todoFooterVue></todoFooterVue>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import { mapGetters } from 'vuex'
+import todoFooterVue from './todoFooter.vue'
+
 export default {
   name: 'TodoList',
+  components: {
+    todoFooterVue,
+  },
   created() {
     this.selectAll()
   },
@@ -41,7 +47,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 table {
   margin: 0px auto;
 }
