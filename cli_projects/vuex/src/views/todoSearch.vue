@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -28,10 +29,11 @@ export default {
     },
   },
   computed: {
-    searchedContent() {
-      return this.$store.state.searchedContent //방법1
-      //   return this.$store.getters.searchedContent //방법2
-    },
+    ...mapState(['searchedContent']),
+    // searchedContent() {
+    //   return this.$store.state.searchedContent //방법1
+    //   //   return this.$store.getters.searchedContent //방법2
+    // },
   },
 }
 </script>

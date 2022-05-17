@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>{{ count }}</h2>
     <h2>{{ total }}</h2>
     <h2>{{ countMsg }}</h2>
     <!-- mapGetter() 
@@ -14,19 +15,21 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+/* eslint-disable */
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   computed: {
     ...mapGetters({
-      countMsg: "countMsg",
-      msg1: "msg1",
-      msg2: "msg2",
-      msg3: "msg3",
+      countMsg: 'countMsg',
+      msg1: 'msg1',
+      msg2: 'msg2',
+      msg3: 'msg3',
     }),
+    ...mapState(['count']),
     // ...mapGetters(["countMsg", "msg1", "msg2", "msg3"]),
     total() {
-      return this.$store.state.count;
+      return this.$store.state.count
     },
     /*
     countMsg() {
@@ -34,7 +37,7 @@ export default {
     },
     */
   },
-};
+}
 </script>
 
 <style></style>
